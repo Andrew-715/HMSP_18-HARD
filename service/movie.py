@@ -20,12 +20,12 @@ class MovieService:
 
         return movies
 
-    def create(self, movie_dict):
-        return self.dao.create(movie_dict)
+    def create(self, movie_d):
+        return self.dao.create(movie_d)
 
-    def update(self, movie_dict):
-        new = self.dao.update(movie_dict)
-        return new
+    def update(self, movie_d):
+        self.dao.update(movie_d)
+        return self.dao
 
     def delete(self, mid):
         self.dao.delete(mid)

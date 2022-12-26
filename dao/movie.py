@@ -10,29 +10,30 @@ class MovieDAO:
     def get_all(self):
         return self.session.query(Movie).all()
 
-    def get_by_director_id(self, value):
-        return self.session.query(Movie).filter(Movie.director_id == value).all()
+    def get_by_director_id(self, val):
+        return self.session.query(Movie).filter(Movie.director_id == val).all()
 
-    def get_by_genre_id(self, value):
-        return self.session.query(Movie).filter(Movie.genre_id == value).all()
+    def get_by_genre_id(self, val):
+        return self.session.query(Movie).filter(Movie.genre_id == val).all()
 
-    def get_by_year(self, value):
-        return self.session.query(Movie).filter(Movie.year == value).all()
+    def get_by_year(self, val):
+        return self.session.query(Movie).filter(Movie.year == val).all()
 
-    def create(self, movie_dict):
-        m_create = Movie(**movie_dict)
+    def create(self, movie_d):
+        m_create = Movie(**movie_d)
         self.session.add(m_create)
         self.session.commit()
+        return m_create
 
-    def update(self, movie_dict):
-        movie = self.get_one(movie_dict.get('id'))
-        movie.title = movie_dict.get('title')
-        movie.description = movie_dict.get('description')
-        movie.trailer = movie_dict.get('trailer')
-        movie.year = movie_dict.get('year')
-        movie.rating = movie_dict.get('rating')
-        movie.genre_id = movie_dict.get('genre_id')
-        movie.director_id = movie_dict.get('director_id')
+    def update(self, movie_d):
+        movie = self.get_one(movie_d.get('id'))
+        movie.title = movie_d.get('title')
+        movie.description = movie_d.get('description')
+        movie.trailer = movie_d.get('trailer')
+        movie.year = movie_d.get('year')
+        movie.rating = movie_d.get('rating')
+        movie.genre_id = movie_d.get('genre_id')
+        movie.director_id = movie_d.get('director_id')
 
         self.session.add(movie)
         self.session.commit()

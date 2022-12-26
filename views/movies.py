@@ -30,7 +30,7 @@ class MoviesView(Resource):
 
     def post(self):
         req_json = request.json
-        new_movie = movie_service(**req_json)
+        new_movie = movie_service.create(req_json)
         return 'Movie added', 201, {'location': f'/movies/{new_movie.id}'}
 
 @movies_ns.route('/<int:mid>')
@@ -43,7 +43,7 @@ class MovieView(Resource):
         except Exception as e:
             return str(e), 404
 
-    def put(self, mid:int):
+    def put(self, mid):
         req_json = request.json
 
         if 'id' not in req_json:

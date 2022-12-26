@@ -10,5 +10,5 @@ class Director(db.Model):
 
 
 class DirectorSchema(Schema):
-    id = fields.Int(dump_only=True)
+    id = fields.Int()
     name = fields.Str()
