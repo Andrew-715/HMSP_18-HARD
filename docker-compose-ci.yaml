@@ -1,22 +1,20 @@
-version: '3.9'
+version: '3.3'
 
 services:
   app:
-    image:
+    image: ${IMAGE_TAG}:GITHUB_REF_NAME-$GITHUN_RUN_ID
     ports:
       - 8080:8080
     depends_on:
       - db
     environment:
-      - DB_USER=db_user
-      - DB_PASSWORD=db_password
-      - DB_NAME=db_name
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
       - DB_HOST=db
   db:
     image: postgres
     environment:
-      - POSTGRES_USER=db_user
-      - POSTGRES_PASSWORD=db_password
-      - POSTGRES_DB=db_name
-    ports:
-      - 5436:5432
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
