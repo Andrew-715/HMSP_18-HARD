@@ -14,3 +14,6 @@ six==1.16.0
 typing-extensions==4.5.0
 Werkzeug==2.2.3
 zipp==3.14.0
+gunicorn==20.1.0
+flask_sqlalchemy==3.0.2
+psycopg2==2.9.5

@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_migrate import Migrate
 from flask_restx import Api
 
 from config import Config
@@ -8,7 +9,7 @@ from views.genres import genre_ns
 from views.movies import movies_ns
 
 
-def create_app(config_object):
+def create_app(config_object) -> Flask:
     app = Flask(__name__)
     app.config.from_object(config_object)
     register_extensions(app)
@@ -25,6 +26,8 @@ def register_extensions(app):
 
 app = create_app(Config())
 app.debug = True
+migrate = Migrate(app, db, render_as_batch=True)
+
 
 if __name__ == '__main__':
-    app.run(host='localhost', port=10001, debug=True)
+    app.run(host='0.0.0.0', port=10001, debug=True)
