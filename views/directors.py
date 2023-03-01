@@ -29,15 +29,17 @@ class DirectorView(Resource):
             return str(e), 404
 
 @director_ns.route('/ping', methods=['GET'])
-def ping():
-    return 'pong'
+class DirectorsViews(Resource):
+    def ping(self):
+        return 'pong'
 
 
 @director_ns.route('/test_db', methods=['GET'])
-def test_db():
-    result = db.session.execute(
-        '''
-        SELECT 1;
-        '''
-    ).scalar()
-    return jsonify({'result': result})
+class DirectorViewssss(Resource):
+    def test_db(self):
+        result = db.session.execute(
+            '''
+            SELECT 1;
+            '''
+        ).scalar()
+        return jsonify({'result': result})
