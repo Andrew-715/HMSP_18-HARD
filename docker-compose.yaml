@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   app:
-    build: .
+    image: icealpine/test_hw_26:main-4310091879
     ports:
       - 8080:8080
     depends_on:
